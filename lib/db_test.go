@@ -1,4 +1,4 @@
-package rolodex
+package lib
 
 import (
        "testing"
