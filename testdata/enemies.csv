@@ -6,5 +6,7 @@ InvalidFirst1,InvalidLast1,InvalidAddr1,InvalidCity1,InvalidState1,11a113
 Greg,Benison,"404 N. Found St.",Portland,OR,97221
 # The following is invalid because it contains the wrong number of fields.
 Swiper,"The Fox","100 Noisy River Rd.",Phoenix,AZ
+# The following is invalid, because the zipcode is invalid for that state.
+Catherine,Person,"200 Abbey Lane",Sacramento,CA,97221
 # Another valid address record.
-Swiper,"The Fox","100 Noisy River Rd.",Phoenix,AZ,11113
+Swiper,"The Fox","100 Noisy River Rd.",Phoenix,AZ,85008

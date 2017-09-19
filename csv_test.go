@@ -13,6 +13,9 @@ func TestReadFile(t *testing.T) {
 }
 
 func TestRecord(t *testing.T) {
+
+     InitZipCodes("testdata/zipcodes.csv")
+
      c := make(chan AddressRecord)
      go ReadAddressCSV("testdata/enemies.csv", c)
 
