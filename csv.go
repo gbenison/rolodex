@@ -26,14 +26,16 @@ func ReadAddressCSV(fname string, c chan AddressRecord) {
 	    break
 	 }
 	 if err != nil {
-	    log.Fatal(err)
+	    log.Print(err)
+	    continue
 	 }
          zipcode, err := strconv.Atoi(record[5])
          if err != nil {
              log.Print(err)
-         } else {
-             address_record := AddressRecord{record[0], record[1], record[2], record[3], record[4], zipcode}
-             c <- address_record
-	 }
+	     continue
+         }
+         address_record := AddressRecord{record[0], record[1], record[2], record[3], record[4], zipcode}
+         c <- address_record
      }
+     close(c)
 }
