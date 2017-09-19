@@ -2,6 +2,8 @@
 Greg,Benison,"404 N. Found St.",Portland,OR,97221
 # The following record is invalid due to a malformed zipcode.
 InvalidFirst1,InvalidLast1,InvalidAddr1,InvalidCity1,InvalidState1,11a113
+# The following is a duplicate record.
+Greg,Benison,"404 N. Found St.",Portland,OR,97221
 # The following is invalid because it contains the wrong number of fields.
 Swiper,"The Fox","100 Noisy River Rd.",Phoenix,AZ
 # Another valid address record.

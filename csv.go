@@ -4,6 +4,7 @@ import (
        "log"
        "os"
        "io"
+       "fmt"
        "encoding/csv"
        "strconv"
 )
@@ -14,6 +15,9 @@ type AddressRecord struct {
 }
 
 func ReadAddressCSV(fname string, c chan AddressRecord) {
+     var n_records_total, n_records_duplicate, n_records_invalid int
+     seen := make(map[AddressRecord]bool)
+
      f, err := os.Open(fname)
      if err != nil {
      	log.Fatal(err)
@@ -25,17 +29,28 @@ func ReadAddressCSV(fname string, c chan AddressRecord) {
 	 if err == io.EOF {
 	    break
 	 }
+	 n_records_total += 1
 	 if err != nil {
 	    log.Print(err)
+	    n_records_invalid += 1
 	    continue
 	 }
          zipcode, err := strconv.Atoi(record[5])
          if err != nil {
+             n_records_invalid += 1
              log.Print(err)
 	     continue
          }
+
          address_record := AddressRecord{record[0], record[1], record[2], record[3], record[4], zipcode}
+
+	 if seen[address_record] {
+             n_records_duplicate += 1
+             continue
+	 }
+	 seen[address_record] = true
          c <- address_record
      }
      close(c)
+     log.Print(fmt.Sprintf("File %s - %d records total; %d invalid; %d duplicate", fname, n_records_total, n_records_invalid, n_records_duplicate))
 }
