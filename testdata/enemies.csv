@@ -1,0 +1,6 @@
+# The following is a valid address record.
+Greg,Benison,"404 N. Found St.",Portland,OR,97221
+# The following record is invalid due to a malformed zipcode.
+InvalidFirst1,InvalidLast1,InvalidAddr1,InvalidCity1,InvalidState1,11a113
+# Another valid address record.
+Swiper,"The Fox","100 Noisy River Rd.",Phoenix,AZ,11113
