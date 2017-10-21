@@ -1,0 +1,30 @@
+ - Currently the program just assumes an empty database and writes all
+   the results there.  Perhaps one would want to append the results to
+   an existing database?  In that case the duplicate filtering would
+   have to be changed to take into account pre-existing records.  That
+   filtering could be done in the database itself on insert.
+
+ - The program assumes an sqlite database with a fixed filename.  In
+   any realistic use case, it would probably make sense for the
+   database type and location to be configurable.
+
+ - Inserting rows one at a time via "insert" statements is a really
+   slow way to load things into a database.  For small input it's a
+   non-issue, but if we need to load in lots of addresses, it would be
+   a good idea to do this in a more performant way: pipe validated
+   input to a database connection and load it via a "copy" command,
+   for example.
+
+ - The requirement for valid zip codes is pretty strict; it requires a
+   complete zipcode database.  Maybe this feature should be optional?
+   In any case it would be more convenient if the zip code database
+   did not have to be supplied as an argument, but could be installed
+   in some standard location.
+
+ - There's no validation of the first name, last name, address, and
+   city fields.  What kind of validation could we perform for these?
+   Length sanity checks perhaps?
+
+ - The code and testing are pretty ascii-centric.  This system doesn't
+   say much about the expected encoding of the input or output and I'm
+   not sure how it behaves given non-English characters.
